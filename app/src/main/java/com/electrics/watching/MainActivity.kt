@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -25,7 +26,10 @@ class MainActivity : ComponentActivity() {
             WatchingTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android", viewModel::searchShow)
+                    Column {
+                        Greeting("Search", viewModel::searchShow)
+                        Greeting2("Schedule", viewModel::getSchedule)
+                    }
                 }
             }
         }
@@ -35,6 +39,11 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(name: String, onClicked: (String) -> Unit) {
     Text(text = "Hello $name!", Modifier.clickable { onClicked.invoke("Avangers") })
+}
+
+@Composable
+fun Greeting2(name: String, onClicked: () -> Unit) {
+    Text(text = "Hello $name!", Modifier.clickable(onClick = onClicked))
 }
 
 @Preview(showBackground = true)

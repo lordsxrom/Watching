@@ -8,8 +8,3 @@ data class SearchResponseItem(
     val score: Double,
     val show: Show
 )
-
-data class Show(
-    val id: Int,
-    val summary: String
-)

@@ -1,6 +1,7 @@
 package com.electrics.watching.di
 
 import android.util.Log
+import com.electrics.watching.data.remote.api.ScheduleApi
 import com.electrics.watching.data.remote.api.SearchApi
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -51,6 +52,12 @@ class AppModule {
     @Singleton
     fun provideSearchApi(retrofit: Retrofit): SearchApi {
         return retrofit.create(SearchApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideScheduleApi(retrofit: Retrofit): ScheduleApi {
+        return retrofit.create(ScheduleApi::class.java)
     }
 
 }

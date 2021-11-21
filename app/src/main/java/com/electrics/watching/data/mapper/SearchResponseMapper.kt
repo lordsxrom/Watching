@@ -6,9 +6,7 @@ import com.electrics.watching.domain.models.SearchResponseItem
 import com.electrics.watching.domain.models.Show
 import javax.inject.Inject
 
-class SearchResponseMapper @Inject constructor(
-
-) {
+class SearchResponseMapper @Inject constructor() {
 
     fun map(dto: SearchResponseDto?): SearchResponse {
         return SearchResponse(
