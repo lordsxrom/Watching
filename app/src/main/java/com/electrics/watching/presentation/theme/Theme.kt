@@ -1,4 +1,4 @@
-package com.electrics.watching.ui.theme
+package com.electrics.watching.presentation.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme

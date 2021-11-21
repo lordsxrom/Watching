@@ -1,4 +1,4 @@
-package com.electrics.watching
+package com.electrics.watching.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -12,7 +12,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.electrics.watching.ui.theme.WatchingTheme
+import com.electrics.watching.presentation.theme.WatchingTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
