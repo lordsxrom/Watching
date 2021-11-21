@@ -1,4 +1,4 @@
-package com.electrics.watching
+package com.electrics.watching.presentation
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
