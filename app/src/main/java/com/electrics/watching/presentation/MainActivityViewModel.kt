@@ -7,6 +7,7 @@ import com.electrics.watching.data.utils.Result2
 import com.electrics.watching.domain.use_case.FullScheduleUseCase
 import com.electrics.watching.domain.use_case.SearchShowUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -16,14 +17,25 @@ class MainActivityViewModel @Inject constructor(
     private val fullScheduleUseCase: FullScheduleUseCase
 ) : ViewModel() {
 
+    private val _isLoading = MutableStateFlow(false)
+    val isLoading: StateFlow<Boolean> = _isLoading
+
+    private val _error = MutableSharedFlow<String>()
+    val error: SharedFlow<String> = _error
+
     fun searchShow(q: String) {
         viewModelScope.launch {
-            when (val result = searchShowUseCase.invoke(q)) {
+            _isLoading.value = true
+            when (val result = searchShowUseCase(q)) {
                 is Result2.Success -> {
-                    Log.d("MainActivityViewModel", result.data.items.toString())
+                    _isLoading.value = false
+                    Log.d("MainActivityViewModel", result.data.toString())
                 }
                 is Result2.Failed -> {
-                    Log.e("MainActivityViewModel", result.throwable.message ?: "error")
+                    _isLoading.value = false
+                    val errorMessage = result.throwable.message ?: "error"
+                    _error.emit(errorMessage)
+                    Log.e("MainActivityViewModel", errorMessage)
                 }
             }
         }
@@ -31,13 +43,10 @@ class MainActivityViewModel @Inject constructor(
 
     fun getSchedule() {
         viewModelScope.launch {
-            when (val result = fullScheduleUseCase.invoke()) {
-                is Result2.Success -> {
-                    Log.d("MainActivityViewModel", result.data.items.toString())
-                }
-                is Result2.Failed -> {
-                    Log.e("MainActivityViewModel", result.throwable.message ?: "error")
-                }
+            _isLoading.value = true
+            fullScheduleUseCase().collect { scheduleItems ->
+                _isLoading.value = false
+                Log.d("MainActivityViewModel", scheduleItems.toString())
             }
         }
     }
