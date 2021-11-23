@@ -6,7 +6,7 @@ import com.electrics.watching.data.utils.Result2
 import com.electrics.watching.data.utils.execute
 import com.electrics.watching.data.utils.map
 import com.electrics.watching.data.utils.toResult
-import com.electrics.watching.domain.models.SearchResponse
+import com.electrics.watching.domain.models.SearchItem
 import javax.inject.Inject
 
 class SearchRepository @Inject constructor(
@@ -14,7 +14,7 @@ class SearchRepository @Inject constructor(
     private val searchResponseMapper: SearchResponseMapper
 ) {
 
-    suspend fun searchShows(q: String): Result2<SearchResponse> {
+    suspend fun searchShows(q: String): Result2<List<SearchItem>?> {
         return execute {
             searchApi.searchShows(q)
                 .toResult()

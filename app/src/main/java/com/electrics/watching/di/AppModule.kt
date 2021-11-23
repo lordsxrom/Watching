@@ -1,12 +1,18 @@
 package com.electrics.watching.di
 
+import android.content.Context
 import android.util.Log
+import androidx.room.Room
+import com.electrics.watching.data.local.AppDatabase
+import com.electrics.watching.data.local.dao.ScheduleDao
+import com.electrics.watching.data.prefs.AppPrefsStorage
 import com.electrics.watching.data.remote.api.ScheduleApi
 import com.electrics.watching.data.remote.api.SearchApi
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -58,6 +64,22 @@ class AppModule {
     @Singleton
     fun provideScheduleApi(retrofit: Retrofit): ScheduleApi {
         return retrofit.create(ScheduleApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAppDatabase(@ApplicationContext appContext: Context): AppDatabase {
+        return Room.databaseBuilder(
+            appContext,
+            AppDatabase::class.java,
+            "app.db"
+        ).build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideScheduleDao(appDatabase: AppDatabase): ScheduleDao {
+        return appDatabase.scheduleDao()
     }
 
 }
