@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">Watching</string>
+    <string name="search">SEARCH</string>
+    <string name="calendar">CALENDAR</string>
+    <string name="account">ACCOUNT</string>
 </resources>
