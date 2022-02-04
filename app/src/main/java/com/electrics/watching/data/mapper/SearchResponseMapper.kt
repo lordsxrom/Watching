@@ -13,10 +13,10 @@ class SearchResponseMapper @Inject constructor() {
                 score = itemDto.score ?: 0.0,
                 show = Show(
                     id = itemDto.show.id,
+                    name = itemDto.show.name ?: "",
                     summary = itemDto.show.summary ?: ""
                 )
             )
         }
     }
-
 }
