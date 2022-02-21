@@ -3,4 +3,6 @@
     <string name="search">SEARCH</string>
     <string name="calendar">CALENDAR</string>
     <string name="account">ACCOUNT</string>
+    <string name="movie_information">Информация о фильме</string>
+    <string name="search_text">Поиск</string>
 </resources>

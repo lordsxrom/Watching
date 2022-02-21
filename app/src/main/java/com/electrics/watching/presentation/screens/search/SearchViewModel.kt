@@ -19,32 +19,38 @@ class SearchViewModel @Inject constructor(
     private val fullScheduleUseCase: FullScheduleUseCase
 ) : ViewModel() {
 
-    val query = MutableLiveData("")
+    private val _query =  MutableStateFlow<String>("")
+    val query: StateFlow<String> = _query.asStateFlow()
 
     private val _isLoading = MutableStateFlow(false)
-    val isLoading: StateFlow<Boolean> = _isLoading
+    val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
 
-    var searchList = MutableLiveData<List<SearchItem>>()
+    var _searchList = MutableStateFlow<List<SearchItem>?>(listOf())
+    val searchList: StateFlow<List<SearchItem>?> = _searchList.asStateFlow()
 
     private val _error = MutableSharedFlow<String>()
     val error: SharedFlow<String> = _error
 
     fun searchShow(q: String) {
-        viewModelScope.launch {
-            _isLoading.value = true
-            when (val result = searchShowUseCase(q)) {
-                is Result2.Success -> {
-                    _isLoading.value = false
-                    searchList.value = result.data
-                    Log.d("SearchViewModel", result.data.toString())
-                }
-                is Result2.Failed -> {
-                    _isLoading.value = false
-                    val errorMessage = result.throwable.message ?: "error"
-                    _error.emit(errorMessage)
-                    Log.e("SearchViewModel", errorMessage)
+        if (q.isNotEmpty()) {
+            viewModelScope.launch {
+                _isLoading.value = true
+                when (val result = searchShowUseCase(q)) {
+                    is Result2.Success -> {
+                        _isLoading.value = false
+                        _searchList.value = result.data
+                        Log.d("SearchViewModel", result.data.toString())
+                    }
+                    is Result2.Failed -> {
+                        _isLoading.value = false
+                        val errorMessage = result.throwable.message ?: "error"
+                        _error.emit(errorMessage)
+                        Log.e("SearchViewModel", errorMessage)
+                    }
                 }
             }
+        } else {
+            Log.d("SearchFragment", "search, query is empty")
         }
     }
 

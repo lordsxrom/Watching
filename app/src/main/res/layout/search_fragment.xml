@@ -6,12 +6,12 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/edit_query"
+        android:id="@+id/editQuery"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Поиск"
+        android:hint="@string/search_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,7 +23,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edit_query"
+        app:layout_constraintTop_toBottomOf="@+id/editQuery"
         tools:itemCount="5"
         tools:listitem="@layout/search_holder" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -52,13 +52,13 @@ class ScheduleRepository @Inject constructor(
     private suspend fun isNeedScheduleUpdate(): Boolean {
         val lastUpdateTime = appPrefsStorage.schedulePreferences.last().lastUpdate.seconds
         val currentTime = Timestamp.getDefaultInstance().seconds
-        return currentTime >= lastUpdateTime + diff
+        return currentTime >= lastUpdateTime + UPDATE_TIME
     }
 
     companion object {
         /**
          * Временной промежуток обновления даных
          */
-        const val diff = 60 * 60 * 24
+        const val UPDATE_TIME = 60 * 60 * 24
     }
 }
