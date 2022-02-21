@@ -21,5 +21,4 @@ class SearchRepository @Inject constructor(
                 .map { dto -> searchResponseMapper.map(dto) }
         }
     }
-
 }

@@ -5,8 +5,14 @@
       <map>
         <entry key="../../../../layout/compose-model-1637441105492.xml" value="0.2574074074074074" />
         <entry key="../../../../layout/compose-model-1637488664622.xml" value="0.2574074074074074" />
-        <entry key="../../../../layout/compose-model-1637696671749.xml" value="0.9855595667870036" />
-        <entry key="../../../../layout/compose-model-1637697809638.xml" value="0.9855595667870036" />
+        <entry key="..\:/PetProject/Watching/app/src/main/res/layout/account_fragment.xml" value="0.20416666666666666" />
+        <entry key="..\:/PetProject/Watching/app/src/main/res/layout/list_of_film_fragment.xml" value="0.20416666666666666" />
+        <entry key="..\:/PetProject/Watching/app/src/main/res/layout/main_activity.xml" value="0.18" />
+        <entry key="..\:/PetProject/Watching/app/src/main/res/layout/movie_info_fragment.xml" value="0.19010416666666666" />
+        <entry key="..\:/PetProject/Watching/app/src/main/res/layout/search_fragment.xml" value="0.20416666666666666" />
+        <entry key="..\:/PetProject/Watching/app/src/main/res/layout/search_holder.xml" value="0.19010416666666666" />
+        <entry key="..\:/PetProject/Watching/app/src/main/res/layout/timetable_fragment.xml" value="0.20416666666666666" />
+        <entry key="..\:/PetProject/Watching/app/src/main/res/menu/nav_menu.xml" value="0.19010416666666666" />
       </map>
     </option>
   </component>
